@@ -1,13 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View , TextInput } from 'react-native';
+
 
 export default class Home extends React.Component {
+
+  constructor (props) {
+    super(props);
+    this.state = { placeHolder: 'Login' };
+  } 
+
   render() {
     return (
-      <TextInput
-      
-       
-      />
+      <View>
+
+        <Text>Welcome hom</Text>
+      </View>
     );
   }
 }
@@ -19,4 +26,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  inputText: {
+    borderWidth: 1,
+    borderColor: "#000"
+  }
 });
