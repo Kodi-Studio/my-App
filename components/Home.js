@@ -4,20 +4,24 @@ import { StyleSheet, Text, View , TextInput } from 'react-native';
 
 export default class Home extends React.Component {
 
-  constructor (props) {
+  constructor (props, myname) {
     super(props);
-    this.state = { placeHolder: 'Login' };
+    console.log(props);
+    this.state = { user: props.navigation.state.params.user };
   } 
 
   render() {
+    console.log(this.state)
     return (
       <View>
 
-        <Text>Welcome hom</Text>
+        <Text>user {this.state.user}-{() => this.state.myname}</Text>
+
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {

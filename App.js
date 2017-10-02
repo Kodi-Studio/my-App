@@ -1,25 +1,34 @@
 import React from 'react';
 import { AppRegistry } from 'react-native';
-import { StyleSheet, Text, View, StatusBar , Button } from 'react-native';
+import {  StyleSheet, Text, View, StatusBar , Button } from 'react-native';
+/// gestion de la navigation tabs
+import { TabNavigator } from 'react-navigation';
+/// gestion de la navigation entre les view
+import {  StackNavigator } from 'react-navigation';
 
+/// REDUX
+//import { createStore } from 'redux';
+import { connect, Provider } from 'react-redux';
+///END REDUX
 
+import store from './configStore'
+
+/// view components
 import Login from './components/Login'
 import Home from './components/Home'
 import About from './components/About'
 
-
-import {
-  StackNavigator,
-} from 'react-navigation';
 
 const ModalStack = StackNavigator({
   Login: { screen: Login },
   Home: { screen: Home  }
 });
 
-/// gestion de la navigation tabs
-import { TabNavigator } from 'react-navigation'
 
+
+
+
+const myname = ({name:'christophe'});
 
 const Tabs = TabNavigator({
 
@@ -36,25 +45,39 @@ const Tabs = TabNavigator({
   }
   
 })
-
-
-
+/*
+let store = createStore((state, action)=>{
+  
+       return "mystore toto";
+       //return (JSON.stringify(action))
+      
+       //return { store, username : action.text }
+  
+      }, this.state );
+*/
 export default class App extends React.Component {
+
+  
 
   static navigationOptions = {
     title: 'Login',
   }
 
-  render() {
+  constructor (props) {
+    super(props);
+    this.state = { myLogin: '', user: '' };
+    this.navigation = this.props.navigation;
+  }
 
+  render() {
     return (
-      <View style={{flex: 1}} >
-        <StatusBar hidden={true} />
-        
+      <Provider store={store} > 
+        <View style={{flex: 1}} >
+          <StatusBar hidden={true} />
+            <ModalStack />
           
-          <ModalStack />
-         
-      </View>
+        </View>
+      </Provider>
      
     );
   }
@@ -68,5 +91,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
 
